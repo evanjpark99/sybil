@@ -1,1 +1,68 @@
-/* Sybil — global styles are injected by the App component */
+:root{
+--t-cream:#F4F1EA;--t-parchment:#EAE4D6;--t-vellum:#FAF7F0;--t-paper:#FBF9F4;--t-stone:#7A7468;
+--t-ink:#0E0C0A;--t-inkLight:#2A2722;--t-inkFaint:#5C5851;--t-inkGhost:#8A857B;
+--t-rose:#C8553D;--t-sage:#4A5D4F;--t-lavender:#5D5468;--t-gold:#B8651E;--t-accent:#C8553D;--t-accentDeep:#9C3F2A;
+--t-hairline:rgba(14,12,10,0.10);--t-hairlineStrong:rgba(14,12,10,0.22);--t-border:rgba(14,12,10,0.10);--t-borderMid:rgba(14,12,10,0.22);
+--t-shadow:none;--t-shadowLg:none;--t-glow:transparent;--t-ctrl-bg:#FBF9F4;
+}
+html.dark{
+--t-cream:#1E1C26;--t-parchment:#272430;--t-vellum:#1A1822;--t-paper:#13111A;--t-stone:#9A9286;
+--t-ink:#ECE6DA;--t-inkLight:#CFC7B8;--t-inkFaint:#9C9388;--t-inkGhost:#6E685E;
+--t-rose:#E08767;--t-sage:#8FB39B;--t-lavender:#A99FC0;--t-gold:#D9A85C;--t-accent:#E0815F;--t-accentDeep:#D6694C;
+--t-hairline:rgba(236,230,218,0.10);--t-hairlineStrong:rgba(236,230,218,0.24);--t-border:rgba(236,230,218,0.10);--t-borderMid:rgba(236,230,218,0.24);
+--t-shadow:none;--t-shadowLg:none;--t-glow:rgba(120,110,170,0.12);--t-ctrl-bg:#1A1822;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{transition:background-color .45s ease}
+body{background:var(--t-paper);min-height:100vh;transition:background-color .45s ease,color .45s ease}
+html.dark body{background-image:radial-gradient(900px 620px at 15% -8%,var(--t-glow),transparent 60%),radial-gradient(760px 520px at 102% -2%,rgba(184,124,62,0.07),transparent 55%);background-attachment:fixed}
+
+#sybil-controls{position:fixed;right:20px;bottom:20px;z-index:99999;display:flex;flex-direction:column;gap:8px;align-items:flex-end;font-family:'Jost',system-ui,sans-serif}
+#sybil-controls .sc-btn{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--t-ctrl-bg);color:var(--t-ink);border:1px solid var(--t-hairlineStrong);cursor:pointer;padding:0;font-size:18px;line-height:1;transition:transform .2s ease,background .25s ease,color .25s ease,border-color .25s ease}
+#sybil-controls .sc-btn:hover{transform:translateY(-2px);background:var(--t-ink);color:var(--t-paper);border-color:var(--t-ink)}
+#sybil-controls .sc-btn svg{width:20px;height:20px;display:block}
+@media(max-width:680px){#sybil-controls{right:14px;bottom:14px}#sybil-controls .sc-btn{width:42px;height:42px}}
+@media print{#sybil-controls{display:none!important}}
+
+/* ---- visual refresh (both themes) ---- */
+html{-webkit-text-size-adjust:100%}
+*{transition:background-color .35s ease,border-color .35s ease,color .35s ease,fill .35s ease}
+h1,h2,h3,h4,h5,h6,.display{text-wrap:balance}
+p{text-wrap:pretty}
+a{text-underline-offset:2px}
+/* keep interactive elements feeling crisp despite the global color transition */
+button,#sybil-controls .sc-btn{transition:transform .18s ease,background-color .25s ease,border-color .25s ease,color .25s ease}
+
+/* ---- responsive / mobile ---- */
+@media(max-width:680px){
+  body{font-size:14px}
+  /* collapse multi-column & fixed-sidebar grids to a single column */
+  [style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns: 320px"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns: 200px 1fr"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns: 130px"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns: 240px"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns: 1.8fr"]{grid-template-columns:1fr!important}
+  /* tighten oversized section padding on small screens */
+  [style*="padding: 5rem 2rem"]{padding:3rem 1.2rem!important}
+  [style*="padding: 2rem 1.5rem"]{padding:1.4rem 1.1rem!important}
+  [style*="padding: 1.5rem 1.8rem"]{padding:1.1rem 1.05rem!important}
+  [style*="padding: 1.2rem 1.5rem"]{padding:1rem 1rem!important}
+  [style*="padding: 1.2rem 1.4rem"]{padding:0.9rem 1rem!important}
+  /* keep wide numeric tables legible */
+  table{font-size:0.62rem}
+  th,td{padding:8px 6px!important}
+  img{max-width:100%;height:auto}
+}
+@media(max-width:430px){
+  [style*="grid-template-columns: 1fr 1fr 1fr"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns: repeat(auto-fill,minmax(150px"]{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))!important}
+}
+
+/* guide chapter 1: side widget */
+.sybil-l0-aside>div{margin-bottom:0}
+.sybil-l0-aside p{font-size:.8rem;line-height:1.7}
+@media(max-width:860px){.sybil-lesson0{grid-template-columns:1fr!important}.sybil-l0-aside{position:static!important;top:auto!important;margin-top:4px}}
+
+/* rulerships: inline dignities */
+@media(max-width:640px){.sybil-dig-row{flex-direction:column;align-items:stretch!important;gap:8px}.sybil-dig{max-width:none!important;grid-template-columns:repeat(2,1fr)!important}}
