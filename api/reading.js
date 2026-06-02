@@ -1,6 +1,4 @@
-import { createClerkClient } from '@clerk/backend';
-
-const clerk = createClerkClient({ secretKey: process.env.CLERK_SECRET_KEY });
+import { verifyToken } from '@clerk/backend';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -11,22 +9,14 @@ export default async function handler(req, res) {
   const authHeader = req.headers.authorization ?? '';
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
 
-  // DEBUG — remove after root cause confirmed
-  const skPresent = !!process.env.CLERK_SECRET_KEY;
-  const skPrefix  = process.env.CLERK_SECRET_KEY?.slice(0, 10) ?? 'MISSING';
-  console.log('[reading] CLERK_SECRET_KEY present:', skPresent, '| prefix:', skPrefix);
-  console.log('[reading] token received:', token ? token.slice(0, 40) + '…' : 'NONE');
-
   if (!token) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
   try {
-    await clerk.verifyToken(token);
-    console.log('[reading] verifyToken OK');
+    await verifyToken(token, { secretKey: process.env.CLERK_SECRET_KEY });
   } catch (e) {
-    console.log('[reading] verifyToken FAILED:', e?.message, '| code:', e?.clerkError, e?.errors);
-    return res.status(401).json({ error: 'Invalid session', detail: e?.message });
+    return res.status(401).json({ error: 'Invalid session' });
   }
 
   // ── Validate env ──────────────────────────────────────────────────────────
