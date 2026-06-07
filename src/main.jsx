@@ -96,6 +96,11 @@ function makeAppearance(isDark) {
       },
 
       // ── Form fields ───────────────────────────────────────────────────────
+      formFieldLabelRow: {
+        display:    'flex',
+        alignItems: 'baseline',
+        gap:        '0.45rem',
+      },
       formFieldLabel: {
         fontFamily:    FM,
         fontSize:      '0.58rem',
@@ -103,17 +108,24 @@ function makeAppearance(isDark) {
         textTransform: 'uppercase',
         color:         t.textMuted,
         fontWeight:    400,
-        marginBottom:  '0.4rem',
+      },
+      formFieldHintText: {
+        fontFamily:    FM,
+        fontSize:      '0.52rem',
+        letterSpacing: '0.1em',
+        textTransform: 'uppercase',
+        color:         t.textMuted,
+        opacity:       0.65,
       },
       formFieldInput: {
         borderRadius: '0px',
         borderColor:  t.border,
         background:   t.input,
         color:        t.text,
-        fontSize:     '0.9rem',
+        fontSize:     '0.88rem',
         fontFamily:   FB,
         boxShadow:    'none',
-        padding:      '0.65rem 0.85rem',
+        padding:      '0.68rem 1rem 0.68rem 1rem',
       },
       formFieldInputShowPasswordButton: {
         color: t.textMuted,
@@ -216,11 +228,16 @@ function makeAppearance(isDark) {
         color: t.gold,
       },
       badge: {
-        background:    t.panelBg,
-        color:         t.textSub,
+        background:    'transparent',
+        border:        'none',
+        boxShadow:     'none',
+        color:         t.textMuted,
         fontFamily:    FM,
-        fontSize:      '0.5rem',
-        letterSpacing: '0.08em',
+        fontSize:      '0.52rem',
+        letterSpacing: '0.1em',
+        textTransform: 'uppercase',
+        opacity:       0.65,
+        padding:       '0',
         borderRadius:  '0px',
       },
       alertText: {
