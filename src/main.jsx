@@ -117,9 +117,15 @@ function makeAppearance(isDark) {
         color:         t.textMuted,
         opacity:       0.65,
       },
+      formFieldInputGroup: {
+        borderRadius: '0px',
+        border:       `1px solid ${t.border}`,
+        background:   t.input,
+        boxShadow:    'none',
+      },
       formFieldInput: {
         borderRadius: '0px',
-        borderColor:  t.border,
+        border:       `1px solid ${t.border}`,
         background:   t.input,
         color:        t.text,
         fontSize:     '0.88rem',

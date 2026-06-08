@@ -66,3 +66,7 @@ button,#sybil-controls .sc-btn{transition:transform .18s ease,background-color .
 
 /* rulerships: inline dignities */
 @media(max-width:640px){.sybil-dig-row{flex-direction:column;align-items:stretch!important;gap:8px}.sybil-dig{max-width:none!important;grid-template-columns:repeat(2,1fr)!important}}
+
+/* Clerk optional badge: wrap text in parentheses */
+.cl-badge::before { content: '(' }
+.cl-badge::after  { content: ')' }
